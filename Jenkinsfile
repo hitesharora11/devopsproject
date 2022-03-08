@@ -4,8 +4,10 @@ pipeline{
         stage("sonar quality check"){
             steps{
                 agent {
-                    { docker 'openjdk:11' }
+                    { docker 'openjdk:11' 
+                    label 'my-defined-label'
                     }
+                }
                  script {
                     withSonarQubeEnv(credentialsId: 'sonarqube') {
                         sh 'chmod +x gradlew'
