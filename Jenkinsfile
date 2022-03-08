@@ -15,7 +15,7 @@ pipeline{
                 withSonarQubeEnv(credentialsId: 'sonarqube') {
                       sh '''
                       chmod +x gradlew
-                      ./gradlew sonarqube --scan
+                      ./gradlew sonarqube 
                       '''
                     }
               }
