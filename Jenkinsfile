@@ -1,23 +1,26 @@
 pipeline{
     agent any
-    stages{
-        stage("sonar quality check"){
-            steps{
-                agent {
-                    { docker 'openjdk:11' 
-                    label 'my-defined-label'
-                    }
-                }
-                 script {
-                    withSonarQubeEnv(credentialsId: 'sonarqube') {
-                        sh 'chmod +x gradlew'
-                        sh './gradlew sonarqube'
-                        }
-                    }
-            }
-            
-        }
+    environment{
+        VERSION = "${env.BUILD_ID}"
     }
+    stages{
+        stage("sonar qube analysis"){
+            agent{
+               docker {
+                    image 'openjdk:11'
+               }
+            }
+            steps{
+               script{
+                withSonarQubeEnv(credentialsId: 'sonarqube') {
+                      sh '''
+                      chmod +x gradlew
+                      ./gradlew sonarqube
+                      '''
+                    }
+              }
+            }
+        }
     post{
         always{
             echo "Success"
