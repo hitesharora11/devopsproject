@@ -8,8 +8,7 @@ pipeline{
                             image 'openjdk.11'
                         }
                     }
-                }
-                script {
+                 script {
                     withSonarQubeEnv(credentialsId: 'sonarqube') {
                         sh 'chmod +x gradlew'
                         sh './gradlew sonarqube'
@@ -24,4 +23,4 @@ pipeline{
             echo "Success"
         }
     }
-    
+}
