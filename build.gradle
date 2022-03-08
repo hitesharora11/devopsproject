@@ -14,6 +14,8 @@ repositories {
 	mavenCentral()
 }
 
+buildScan { termsOfServiceUrl = “https://gradle.com/terms-of-service”; termsOfServiceAgree = “yes” }
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -28,7 +30,7 @@ test {
 
 sonarqube {
     properties {
-        property 'sonar.host.url', 'http://34.125.201.58:9000'
+        property 'sonar.host.url', 'http://34.68.246.97:9000'
         property 'sonar.login', '******'
     }
 }
